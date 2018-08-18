@@ -12,7 +12,8 @@ npm install
 npm run dev
 
 # build electron application for production
-npm run build
+npm run build:mac (MAC OSX)
+npm run build:windows (Windows)
 
 # run unit & end-to-end tests
 npm test
