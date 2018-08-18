@@ -11,9 +11,11 @@ npm install
 # serve with hot reload at localhost:9080
 npm run dev
 
-# build electron application for production
-npm run build:mac (MAC OSX)
-npm run build:windows (Windows)
+# build electron application for production MAC version
+npm run build:mac
+
+# build electron application for production Windows version
+npm run build:windows
 
 # run unit & end-to-end tests
 npm test
