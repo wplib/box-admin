@@ -1,0 +1,34 @@
+.is-paddingless-x {
+  padding: {
+    left: 0 !important;
+    right: 0 !important;
+  }
+}
+
+.is-paddingless-y {
+  padding: {
+    top: 0 !important;
+    bottom: 0 !important;
+  }
+}
+
+.is-vertical-center {
+  display: flex;
+  align-items: center;
+}
+
+.is-height-max {
+  height: calc(100vh - 12px)
+}
+
+input {
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  border: {
+    width: 2px;
+  }
+}
+
+.is-white {
+  background: #FFFFFF;
+}

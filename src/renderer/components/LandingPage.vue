@@ -69,9 +69,9 @@ export default {
     },
     fetchData () {
       let self = this
-      self.$http.get('http://10.10.10.76')
+      self.$http.get('http://gearbox.local')
         .then((response) => {
-          window.location = 'http://10.10.10.76'
+          window.location = 'http://gearbox.local'
         })
         .catch((error) => {
           this.startBox()
