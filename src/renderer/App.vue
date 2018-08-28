@@ -10,6 +10,11 @@
   }
 </script>
 
-<style>
+<style lang="scss">
   /* CSS */
+  body {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
 </style>

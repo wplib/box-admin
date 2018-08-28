@@ -9,12 +9,12 @@
 
       <!-- External Links -->
       <div class="wrapper-links">
-        <div class="button" @click="runNpm">
+        <div class="button" @click="startBox">
           Install
         </div>
-        <a :href="'http://gearbox.local'" class="button">
+        <div class="button" @click="redirectContent">
           Start
-        </a>
+        </div>
       </div>
 
       <!--
@@ -46,18 +46,37 @@
 </template>
 
 <script>
+import cmd from 'node-command-line'
+
 export default {
   name: 'landing-page',
   data () {
     return {}
   },
-  components: {},
+  components: {
+    cmd
+  },
   methods: {
     open (link) {
       this.$electron.shell.openExternal(link)
     },
-    runNpm () {
-      alert('run npm command')
+    startBox () {
+      /* cmd.run('cd ./src/renderer/box/gearbox.local/ && node shell.js') */
+      alert('WPLib Box is not running. Please start it on the command line using vagrant up')
+    },
+    redirectContent () {
+      this.fetchData()
+    },
+    fetchData () {
+      let self = this
+      self.$http.get('http://10.10.10.76')
+        .then((response) => {
+          window.location = 'http://10.10.10.76'
+        })
+        .catch((error) => {
+          this.startBox()
+          console.log(error)
+        })
     }
   }
 }
