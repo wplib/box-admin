@@ -1,12 +1,16 @@
-import Home from '@/views/Home'
+import LocalSites from '@/views/LocalSites'
 import ConnectWpLib from '@/views/ConnectWpLib'
 import AddLocalSite from '@/views/AddLocalSite'
 
 const routes = [
   {
     path: '/',
-    name: 'home',
-    component: Home
+    redirect: 'local-sites'
+  },
+  {
+    path: '/local-sites',
+    name: 'localSites',
+    component: LocalSites
   },
   {
     path: '/connect-wplib',

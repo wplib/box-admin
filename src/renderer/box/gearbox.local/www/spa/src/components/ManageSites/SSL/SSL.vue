@@ -4,7 +4,10 @@
 
 <script>
 export default {
-  name: 'Home'
+  name: 'Ssl',
+  data() {
+    return {}
+  }
 }
 </script>
 

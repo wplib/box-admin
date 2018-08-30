@@ -6,27 +6,44 @@
         <div class="m-t-30 m-b-30">
           <div class="field">
             <div class="control">
-              <input class="input has-text-centered is-size-3" type="text" placeholder="" autofocus>
+              <input class="input has-text-centered is-size-3" type="text" placeholder="" autofocus
+                     v-model="name"
+                     @input="emitSiteName"
+              >
             </div>
           </div>
         </div>
-        <advanced-properties />
+        <advanced-properties/>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import advancedProperties from '@/components/SetupSite/AdvancedProperties'
+import AdvancedProperties from './AdvancedProperties'
 
 export default {
   name: 'SetupSite',
   data () {
-    return {}
+    return {
+      name: null,
+      localSiteDomain: null,
+      localSitePath: null,
+      bluePrint: false
+    }
   },
   components: {
-    advancedProperties
-  }
+    AdvancedProperties
+  },
+  methods: {
+    updateSite () {
+      alert('here')
+    },
+    emitSiteName () {
+      this.$events.emit('site:name', this.name)
+    }
+  },
+  computed: {}
 }
 </script>
 

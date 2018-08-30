@@ -22,3 +22,12 @@
   padding: 1em 1em ;
   height: auto;
 }
+
+input,
+.input {
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  border: {
+    width: 2px;
+  }
+}

@@ -59,9 +59,6 @@ import {
 
 export default {
   name: 'Sidebar',
-  data () {
-    return {}
-  },
   computed: {
     ...mapGetters([
       'getStateSidebar'
@@ -82,9 +79,9 @@ export default {
 
 <style lang="scss">
     .sidebar {
-        background: #0F487D;
-        width: 80px;
-        height: calc(100vh + 12px);
+        background: hsl(209, 79%, 27%);
+        width: 100%;
+        height: 100vh;
         color: #FFF;
         position: relative;
         .side-link {
@@ -102,7 +99,7 @@ export default {
 
             .is-rounded.is-white {
                 border-radius: 50px;
-                color: #0F487D;
+                color: hsl(209, 79%, 27%);
                 width: 45px;
                 margin: 0 auto;
             }

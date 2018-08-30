@@ -1,12 +1,12 @@
 <template>
   <div id="app">
-    <div class="container is-fullhd">
-      <div class="row columns">
-        <div class="column is-1 is-paddingless-y">
-          <sidebar></sidebar>
+    <div class="container">
+      <div class="columns is-gapless">
+        <div class="column is-1 ">
+          <sidebar />
         </div>
         <div class="column is-11">
-          <router-view/>
+          <router-view />
         </div>
       </div>
     </div>
@@ -42,7 +42,6 @@ export default {
     ]),
     openExternalUrl () {
       /* This method is open url in default browser of operational system */
-      // https://wplib.github.io/box-docs/index.html
       window.open('https://wplib.github.io/box-docs/index.html', '_blank')
     }
   }
@@ -50,6 +49,7 @@ export default {
 </script>
 
 <style lang="scss">
+  @import './assets/scss/custom-variables';
   @import "~bulma/bulma";
   @import "~bulma-extensions/bulma-tooltip/dist/css/bulma-tooltip";
   @import url("https://unpkg.com/ionicons@4.4.2/dist/css/ionicons.min.css");

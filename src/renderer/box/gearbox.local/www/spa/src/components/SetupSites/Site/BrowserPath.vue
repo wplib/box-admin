@@ -6,11 +6,11 @@
         <div class="is-size-3 similar-input">
           <div class="columns">
             <div class="column is-three-fifths has-text-left noselect">
-              <span class="is-size-6">~\Local Sites</span>
+              <span class="is-size-6">~\Local Sites{{ localSitePath }}</span>
             </div>
             <div class="column has-text-right">
               <span
-                class="is-size-6 is-capitalized has-text-weight-bold cursor pointer link-browser"
+                class="is-size-6 is-capitalized has-text-weight-bold cursor pointer link-browser noselect"
                 @click="chooseDirectory"
               >Browse</span>
             </div>
@@ -18,15 +18,17 @@
         </div>
       </div>
     </div>
-    <!--
-    <input type="file" webkitdirectory mozdirectory msdirectory odirectory directory multiple id="chooseDirectory" class="is-hidden" @change="getPath">
-    -->
   </div>
 </template>
 
 <script>
 export default {
   name: 'BrowserPath',
+  data () {
+    return {
+      localSitePath: null
+    }
+  },
   methods: {
     chooseDirectory () {
       let element = document.querySelector('#chooseDirectory')
@@ -35,15 +37,24 @@ export default {
       }
     },
     getPath (event) {}
+  },
+  mounted () {
+    this.$events.listen('site:name', eventData => {
+      if (eventData.length > 0) {
+        this.localSitePath = '\\' + eventData
+      } else {
+        this.localSitePath = ''
+      }
+    })
   }
 }
 </script>
 
 <style scoped lang="scss">
   .link-browser {
-    color: #3273dc;
+    color: hsl(209, 79%, 27%);
     &:hover {
-      color: darken(#3273dc, 30%) !important;
+      color: darken(hsl(209, 79%, 27%), 30%) !important;
     }
   }
 </style>
