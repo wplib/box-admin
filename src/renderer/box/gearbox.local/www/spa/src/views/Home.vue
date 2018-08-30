@@ -1,7 +1,7 @@
 <template>
   <div class="is-vertical-center is-fullheight is-height-max has-text-centered">
-    <div class="column is-half is-offset-one-quarter">
-      <h1 class="m-b-15 is-size-1">Looks like you hanven't created any sites yet!</h1>
+    <div class="column is-12">
+      <h1 class="m-b-15 is-size-1 noselect">Looks like you hanven't <br>created any sites yet!</h1>
       <router-link to="/add-localsite"
                    class="button is-link is-rounded "
       >
