@@ -5,8 +5,8 @@
       <div class="control">
         <div class="is-size-3 similar-input">
           <div class="columns">
-            <div class="column is-three-fifths has-text-left noselect">
-              <span class="is-size-6">~\Local Sites{{ localSitePath }}</span>
+            <div class="column is-three-fifths has-text-left noselect local-path">
+              <span class="is-size-6 has-text-weight-normal">~\Local Sites{{ localSitePath }}</span>
             </div>
             <div class="column has-text-right">
               <span
@@ -41,7 +41,7 @@ export default {
   mounted () {
     this.$events.listen('site:name', eventData => {
       if (eventData.length > 0) {
-        this.localSitePath = '\\' + eventData
+        this.localSitePath = '\\' + eventData.replace(/[^A-Z0-9]+/ig, '')
       } else {
         this.localSitePath = ''
       }
@@ -56,5 +56,11 @@ export default {
     &:hover {
       color: darken(hsl(209, 79%, 27%), 30%) !important;
     }
+  }
+
+  .local-path {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 </style>

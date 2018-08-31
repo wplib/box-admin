@@ -10,11 +10,6 @@
     <div
       :class="wrapper.options ? '' : 'is-hidden'"
     >
-      <div class="columns">
-        <div class="column">
-          {{ getSiteName }}
-        </div>
-      </div>
       <div class="columns has-text-left">
         <div class="column is-6">
           <div class="field">
@@ -25,22 +20,26 @@
                 type="text"
                 placeholder=""
                 id="siteDomain"
-                v-model="siteDomain"
-                @input="updateSiteDomain"
-                @change="updateSiteDomain"
+                v-model="domain"
               >
             </div>
           </div>
         </div>
         <div class="column is-6">
-          <browser-path />
+          <browser-path ref="browsePath" />
         </div>
       </div>
       <div class="columns">
         <div class="column is-12">
           <div class="field">
             <label for="blueprint" class="label noselect">Create site from Blueprint?</label>
-            <select name="blueprint" id="blueprint" class="input default-size" v-model="bluePrint">
+            <select
+              name="blueprint"
+              id="blueprint"
+              class="input default-size"
+              v-model="bluePrint"
+              @change="picBluePrint"
+            >
               <option value="0">Don't use Blueprint</option>
               <option value="1">Option 1</option>
               <option value="2">Option 2</option>
@@ -54,6 +53,10 @@
 </template>
 
 <script>
+import {
+  mapActions
+} from 'vuex'
+
 import BrowserPath from './BrowserPath'
 
 export default {
@@ -63,7 +66,8 @@ export default {
       wrapper: {
         options: false
       },
-      siteDomain: '',
+      domain: '',
+      name: '',
       bluePrint: 0
     }
   },
@@ -71,26 +75,22 @@ export default {
     BrowserPath
   },
   methods: {
+    ...mapActions([
+      'setOverview'
+    ]),
+    picBluePrint () {},
     wrapperOptions () {
       this.wrapper.options = !this.wrapper.options
-    },
-    updateSiteDomain () {
-      return false
     }
   },
   mounted () {
     this.$events.listen('site:name', siteName => {
       if (siteName.length > 0) {
-        this.siteDomain = siteName + '.local'
+        this.domain = siteName.replace(/[^A-Z0-9]+/ig, '') + '.local'
       } else {
-        this.siteDomain = ''
+        this.domain = ''
       }
     })
-  },
-  computed: {
-    getSiteName () {
-      return ''
-    }
   }
 }
 </script>

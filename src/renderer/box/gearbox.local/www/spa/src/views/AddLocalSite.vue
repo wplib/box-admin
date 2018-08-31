@@ -10,17 +10,17 @@
       <tab-content
         title="Setup Site"
       >
-        <site />
+        <site ref="site" />
       </tab-content>
       <tab-content
         title="Setup Environment"
       >
-        <environment />
+        <environment ref="environment" />
       </tab-content>
       <tab-content
         title="Setup WordPress"
       >
-        <word-press />
+        <word-press ref="wordpress" />
       </tab-content>
     </form-wizard>
   </div>
@@ -38,9 +38,12 @@ export default {
     Environment,
     WordPress
   },
+  mounted () {
+    this.$events.listen('setup:host', dataEvent => {})
+  },
   methods: {
     onComplete () {
-      alert('Yay. Done!')
+      this.$events.emit('commit', event)
     }
   }
 }

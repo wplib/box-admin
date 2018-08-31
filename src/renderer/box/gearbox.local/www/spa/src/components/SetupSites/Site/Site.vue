@@ -7,40 +7,61 @@
           <div class="field">
             <div class="control">
               <input class="input has-text-centered is-size-3" type="text" placeholder="" autofocus
-                     v-model="name"
+                     v-model="site.name"
                      @input="emitSiteName"
               >
             </div>
           </div>
         </div>
-        <advanced-properties/>
+        <advanced-properties ref="advancedProperties" />
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import {
+  mapActions
+} from 'vuex'
+
 import AdvancedProperties from './AdvancedProperties'
 
 export default {
   name: 'SetupSite',
   data () {
     return {
-      name: null,
-      localSiteDomain: null,
-      localSitePath: null,
-      bluePrint: false
+      site: {
+        name: '',
+        localSiteDomain: null,
+        localSitePath: null,
+        bluePrint: false
+      }
     }
   },
   components: {
     AdvancedProperties
   },
+  mounted () {
+    this.$events.listen('commit', eventData => {
+      this.setOverview({
+        siteName: this.site.name,
+        sitePath: this.site.localSitePath,
+        siteDomain: this.site.localSiteDomain,
+        bluePrint: this.site.bluePrint
+      })
+    })
+  },
   methods: {
-    updateSite () {
-      alert('here')
-    },
+    ...mapActions([
+      'setOverview'
+    ]),
     emitSiteName () {
-      this.$events.emit('site:name', this.name)
+      this.$events.emit('site:name', this.site.name)
+      if (this.$refs.advancedProperties !== undefined) {
+        this.site.localSitePath = this.$refs.advancedProperties.$refs.browsePath.localSitePath
+        this.site.localSiteDomain = this.$refs.advancedProperties.domain
+        this.site.bluePrint = this.$refs.advancedProperties.bluePrint
+      }
     }
   },
   computed: {}

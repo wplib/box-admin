@@ -13,11 +13,11 @@
       <div class="columns has-text-left flex center">
         <div class="column is-5">
           <div class="field">
-            <label for="webServer" class="label noselect">Is This WordPress Multisite</label>
-            <select name="webServer" id="webServer" class="input default-size">
-              <option value="">No</option>
-              <option value="">Yes - Subdirectory</option>
-              <option value="">Yes - Subdomain</option>
+            <label for="multisite" class="label noselect">Is This WordPress Multisite</label>
+            <select name="multisite" id="multisite" class="input default-size" v-model="multisite" @change="emitOption">
+              <option value="no">No</option>
+              <option value="subdirectory">Yes - Subdirectory</option>
+              <option value="subdomain">Yes - Subdomain</option>
             </select>
           </div>
         </div>
@@ -33,13 +33,16 @@ export default {
     return {
       wrapper: {
         options: false
-      }
+      },
+      multisite: 'no'
     }
   },
-  components: {},
   methods: {
     wrapperOptions () {
       this.wrapper.options = !this.wrapper.options
+    },
+    emitOption () {
+      this.$events.$emit('environment:multisite', this.multisite)
     }
   }
 }
